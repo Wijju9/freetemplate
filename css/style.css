@@ -618,3 +618,22 @@ body.bistro-sidebar-collapsed .bistro-dashboard-sidebar {
 .bistro-dashboard-layout {
     transition: .3s ease;
 }
+
+.bistro-order-lines {
+    display: grid;
+    gap: 8px;
+    padding: 12px;
+    border: 1px dashed rgba(0, 0, 0, .18);
+    border-radius: 12px;
+    background: #FFFFFF;
+}
+
+.bistro-order-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: var(--light);
+}

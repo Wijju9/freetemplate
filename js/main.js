@@ -279,21 +279,21 @@
     }
 
     function renderOrderSection(state) {
-        var productOptions = state.products.map(function (product) { return '<option value="' + escapeBistroHtml(product.name) + '">' + escapeBistroHtml(product.name) + '</option>'; }).join("");
+        var productOptions = state.products.map(function (product) { return '<option value="' + escapeBistroHtml(product.name) + '" data-price="' + Number(product.price) + '">' + escapeBistroHtml(product.name) + ' - $' + Number(product.price).toFixed(2) + '</option>'; }).join("");
         var rows = state.orders.map(orderRow);
-        return '<section class="bistro-panel"><h4>Add Order</h4><form class="row g-2 mb-3" data-bistro-form="order"><div class="col-md-3"><input class="form-control" name="customer" placeholder="Customer name" required></div><div class="col-md-3"><select class="form-select" name="type"><option>Parcel</option><option>Dine in</option></select></div><div class="col-md-4"><select class="form-select" name="items">' + productOptions + '</select></div><div class="col-md-2"><button class="btn btn-primary w-100" type="submit">Add Order</button></div></form>' + renderBistroTable(["ID", "Customer", "Type", "Items", "Status", "Time"], rows) + '</section>';
+        return '<section class="bistro-panel"><h4>Add Order</h4><p class="text-muted small">Large customer orders are managed as item lines with quantities, so one order can contain more than 10 total items.</p><form class="mb-3" data-bistro-form="order"><div class="row g-2 mb-2"><div class="col-md-3"><input class="form-control" name="customer" placeholder="Customer name" required></div><div class="col-md-2"><select class="form-select" name="type"><option>Parcel</option><option>Dine in</option></select></div><div class="col-md-3"><select class="form-select" name="itemName">' + productOptions + '</select></div><div class="col-md-2"><input class="form-control" name="quantity" type="number" min="1" value="1" placeholder="Qty"></div><div class="col-md-2"><button class="btn btn-outline-primary w-100" type="button" data-bistro-add-line>Add Item</button></div></div><input type="hidden" name="items" value="[]"><div class="bistro-order-lines mb-3" data-bistro-order-lines>No items added yet.</div><button class="btn btn-primary rounded-pill px-4" type="submit">Add Order</button></form>' + renderBistroTable(["ID", "Customer", "Type", "Items", "Total Qty", "Status", "Time"], rows) + '</section>';
     }
 
     function renderCookSection(state) {
         var rows = state.orders.filter(function (order) { return order.status !== "Served"; }).map(function (order) {
-            return '<tr><td>' + order.id + '</td><td>' + escapeBistroHtml(order.type) + '</td><td>' + escapeBistroHtml(order.items) + '</td><td>' + escapeBistroHtml(order.status) + '</td><td><button class="btn btn-sm btn-outline-primary" data-bistro-status="Ready" data-id="' + order.id + '">Mark Ready</button></td></tr>';
+            return '<tr><td>' + order.id + '</td><td>' + escapeBistroHtml(order.type) + '</td><td>' + formatOrderItems(order.items) + '</td><td>' + escapeBistroHtml(order.status) + '</td><td><button class="btn btn-sm btn-outline-primary" data-bistro-status="Ready" data-id="' + order.id + '">Mark Ready</button></td></tr>';
         });
         return '<section class="bistro-panel"><h4>Cook - What To Cook</h4>' + renderBistroTable(["Order", "Type", "Veg Items", "Status", "Action"], rows) + '</section>';
     }
 
     function renderCashierSection(state) {
         var rows = state.orders.map(function (order) {
-            return '<tr><td>' + order.id + '</td><td>' + escapeBistroHtml(order.customer) + '</td><td>' + escapeBistroHtml(order.type) + '</td><td>' + escapeBistroHtml(order.items) + '</td><td>' + escapeBistroHtml(order.status) + '</td><td><button class="btn btn-sm btn-outline-success" data-bistro-status="Paid" data-id="' + order.id + '">Mark Paid</button></td></tr>';
+            return '<tr><td>' + order.id + '</td><td>' + escapeBistroHtml(order.customer) + '</td><td>' + escapeBistroHtml(order.type) + '</td><td>' + formatOrderItems(order.items) + '</td><td>' + escapeBistroHtml(order.status) + '</td><td><button class="btn btn-sm btn-outline-success" data-bistro-status="Paid" data-id="' + order.id + '">Mark Paid</button></td></tr>';
         });
         return '<section class="bistro-panel"><h4>Cashier Orders</h4>' + renderBistroTable(["ID", "Customer", "Type", "Items", "Status", "Payment"], rows) + '</section>';
     }
@@ -307,7 +307,30 @@
     }
 
     function orderRow(order) {
-        return '<tr><td>' + order.id + '</td><td>' + escapeBistroHtml(order.customer) + '</td><td>' + escapeBistroHtml(order.type) + '</td><td>' + escapeBistroHtml(order.items) + '</td><td>' + escapeBistroHtml(order.status) + '</td><td>' + escapeBistroHtml(order.time) + '</td></tr>';
+        return '<tr><td>' + order.id + '</td><td>' + escapeBistroHtml(order.customer) + '</td><td>' + escapeBistroHtml(order.type) + '</td><td>' + formatOrderItems(order.items) + '</td><td>' + getOrderQuantity(order.items) + '</td><td>' + escapeBistroHtml(order.status) + '</td><td>' + escapeBistroHtml(order.time) + '</td></tr>';
+    }
+
+    function formatOrderItems(items) {
+        if (Array.isArray(items)) {
+            return items.map(function (item) {
+                return escapeBistroHtml(item.name) + ' x ' + Number(item.qty);
+            }).join('<br>');
+        }
+        return escapeBistroHtml(items);
+    }
+
+    function getOrderQuantity(items) {
+        if (Array.isArray(items)) {
+            return items.reduce(function (total, item) { return total + Number(item.qty || 0); }, 0);
+        }
+        return 1;
+    }
+
+    function formatOrderItemsText(items) {
+        if (Array.isArray(items)) {
+            return items.map(function (item) { return item.name + ' x ' + Number(item.qty); }).join(', ');
+        }
+        return String(items);
     }
 
     $(document).on("click", ".fa-user.text-body", function (event) {
@@ -346,6 +369,35 @@
         window.location.href = "index.html";
     });
 
+    function renderPendingOrderLines(form, items) {
+        var target = form.find("[data-bistro-order-lines]");
+        if (!items.length) {
+            target.html("No items added yet.");
+            return;
+        }
+        target.html(items.map(function (item, index) {
+            return '<div class="bistro-order-line"><span>' + escapeBistroHtml(item.name) + ' x ' + Number(item.qty) + '</span><button class="btn btn-sm btn-outline-danger" type="button" data-bistro-remove-line="' + index + '">Remove</button></div>';
+        }).join(""));
+    }
+
+    $(document).on("click", "[data-bistro-add-line]", function () {
+        var form = $(this).closest("form");
+        var selected = form.find('[name="itemName"] option:selected');
+        var items = JSON.parse(form.find('[name="items"]').val() || "[]");
+        items.push({ name: selected.val(), qty: Number(form.find('[name="quantity"]').val() || 1), price: Number(selected.data("price") || 0) });
+        form.find('[name="items"]').val(JSON.stringify(items));
+        renderPendingOrderLines(form, items);
+    });
+
+    $(document).on("click", "[data-bistro-remove-line]", function () {
+        var form = $(this).closest("form");
+        var items = JSON.parse(form.find('[name="items"]').val() || "[]");
+        items.splice(Number($(this).data("bistro-remove-line")), 1);
+        form.find('[name="items"]').val(JSON.stringify(items));
+        renderPendingOrderLines(form, items);
+    });
+
+
     $(document).on("submit", "[data-bistro-form]", function (event) {
         event.preventDefault();
         var state = getBistroState();
@@ -358,8 +410,12 @@
         if (formType === "category" && !state.categories.includes(values.name)) state.categories.push(values.name);
         if (formType === "product") state.products.push({ id: nextBistroId(state.products), name: values.name, category: values.category, price: Number(values.price) });
         if (formType === "order") {
-            state.orders.push({ id: nextBistroId(state.orders), customer: values.customer, type: values.type, items: values.items, status: "Cooking", time: now });
-            state.history.push({ customer: values.customer.toLowerCase() === "customer" ? "customer" : values.customer, visit: now, order: values.type + " - " + values.items });
+            var orderItems = JSON.parse(values.items || "[]");
+            if (!orderItems.length) {
+                orderItems.push({ name: values.itemName, qty: Number(values.quantity || 1), price: Number($(this).find('[name="itemName"] option:selected').data("price") || 0) });
+            }
+            state.orders.push({ id: nextBistroId(state.orders), customer: values.customer, type: values.type, items: orderItems, status: "Cooking", time: now });
+            state.history.push({ customer: values.customer.toLowerCase() === "customer" ? "customer" : values.customer, visit: now, order: values.type + " - " + formatOrderItemsText(orderItems) });
         }
 
         saveBistroState(state);

@@ -166,15 +166,6 @@
             '      <button class="btn btn-primary rounded-pill w-100" type="submit">Open Dashboard</button>',
             '    </form>',
             '  </div>',
-            '</div>',
-            '<div class="bistro-dashboard-overlay" id="bistroDashboard" aria-hidden="true">',
-            '  <div class="bistro-dashboard-card">',
-            '    <div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">',
-            '      <div><h3 class="mb-1" id="bistroDashboardTitle">Dashboard</h3><p class="text-muted mb-0" id="bistroDashboardSubtitle"></p></div>',
-            '      <div><button class="btn btn-outline-secondary rounded-pill me-2" id="bistroLogout" type="button">Logout</button><button class="bistro-close" data-bistro-close="dashboard" type="button" aria-label="Close dashboard">&times;</button></div>',
-            '    </div>',
-            '    <div id="bistroDashboardContent"></div>',
-            '  </div>',
             '</div>'
         ].join(""));
 
@@ -206,6 +197,9 @@
 
         $("#bistroDashboardTitle").text(roleLabel + " Dashboard");
         $("#bistroDashboardSubtitle").text("Logged in as " + activeBistroUser.name + ". Static demo data is saved in this browser.");
+        $("#bistroDashboardRole").text(roleLabel);
+        $("#bistroDashboardUser").text(activeBistroUser.name);
+        $("#bistroDashboardStats").html(renderBistroStats(state));
 
         if (access.full) {
             content.push(renderCustomersSection(state));
@@ -218,7 +212,20 @@
         if (access.isCustomer) content.push(renderCustomerHistorySection(state));
 
         $("#bistroDashboardContent").html(content.join(""));
-        $("#bistroDashboard").addClass("show").attr("aria-hidden", "false");
+        if (!$("#bistroDashboardPage").length) window.location.href = "dashboard.html";
+    }
+
+    function renderBistroStats(state) {
+        return [
+            bistroStatCard("Customers", state.customers.length, "fa-users"),
+            bistroStatCard("Employees", state.employees.length, "fa-user-tie"),
+            bistroStatCard("Veg Dishes", state.products.length, "fa-utensils"),
+            bistroStatCard("Orders", state.orders.length, "fa-receipt")
+        ].join("");
+    }
+
+    function bistroStatCard(label, value, icon) {
+        return '<div class="col-sm-6 col-xl-3"><div class="bistro-stat-card"><i class="fa ' + icon + '"></i><div><span>' + label + '</span><strong>' + value + '</strong></div></div></div>';
     }
 
     function renderCustomersSection(state) {
@@ -299,8 +306,9 @@
             return;
         }
         $("#bistroLoginError").addClass("d-none");
+        localStorage.setItem("bistroActiveUser", JSON.stringify(activeBistroUser));
         closeBistroLayer("#bistroLoginDialog");
-        renderBistroDashboard();
+        window.location.href = "dashboard.html";
     });
 
     $(document).on("click", "[data-bistro-close]", function () {
@@ -309,8 +317,8 @@
 
     $(document).on("click", "#bistroLogout", function () {
         activeBistroUser = null;
-        closeBistroLayer("#bistroDashboard");
-        openBistroLogin();
+        localStorage.removeItem("bistroActiveUser");
+        window.location.href = "index.html";
     });
 
     $(document).on("submit", "[data-bistro-form]", function (event) {
@@ -355,6 +363,20 @@
         saveBistroState(state);
         renderBistroDashboard();
     });
+
+
+    function initBistroDashboardPage() {
+        if (!$("#bistroDashboardPage").length) return;
+        var savedUser = localStorage.getItem("bistroActiveUser");
+        if (!savedUser) {
+            window.location.href = "index.html";
+            return;
+        }
+        activeBistroUser = JSON.parse(savedUser);
+        renderBistroDashboard();
+    }
+
+    initBistroDashboardPage();
 
     
 })(jQuery);

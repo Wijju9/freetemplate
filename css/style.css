@@ -383,8 +383,7 @@
     color: var(--primary);
 }
 /*** Static Login And Dashboard ***/
-.bistro-auth-overlay,
-.bistro-dashboard-overlay {
+.bistro-auth-overlay {
     position: fixed;
     inset: 0;
     z-index: 100000;
@@ -395,13 +394,11 @@
     background: rgba(17, 17, 17, .72);
 }
 
-.bistro-auth-overlay.show,
-.bistro-dashboard-overlay.show {
+.bistro-auth-overlay.show {
     display: flex;
 }
 
-.bistro-auth-card,
-.bistro-dashboard-card {
+.bistro-auth-card {
     position: relative;
     width: min(100%, 460px);
     max-height: 90vh;
@@ -412,9 +409,6 @@
     box-shadow: 0 24px 80px rgba(0, 0, 0, .25);
 }
 
-.bistro-dashboard-card {
-    width: min(100%, 1180px);
-}
 
 .bistro-close {
     border: 0;
@@ -449,8 +443,151 @@
 
 @media (max-width: 575.98px) {
     .bistro-auth-card,
-    .bistro-dashboard-card,
     .bistro-panel {
         padding: 20px;
+    }
+}
+
+/*** Dashboard Page ***/
+.bistro-dashboard-layout {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    background: var(--light);
+}
+
+.bistro-dashboard-sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 32px 24px;
+    color: #FFFFFF;
+    background: var(--dark);
+}
+
+.bistro-dashboard-brand {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: var(--primary);
+    font-family: 'Lora', serif;
+    font-size: 34px;
+    font-weight: 700;
+}
+
+.bistro-dashboard-brand span {
+    color: var(--secondary);
+}
+
+.bistro-dashboard-brand:hover,
+.bistro-dashboard-nav a:hover {
+    color: var(--primary);
+}
+
+.bistro-dashboard-nav {
+    display: grid;
+    gap: 10px;
+}
+
+.bistro-dashboard-nav a {
+    padding: 12px 14px;
+    color: #FFFFFF;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .08);
+}
+
+.bistro-dashboard-main {
+    padding: 32px;
+}
+
+.bistro-dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: flex-start;
+    margin-bottom: 24px;
+    padding: 28px;
+    border-radius: 22px;
+    background: #FFFFFF;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .06);
+}
+
+.bistro-dashboard-header h1 {
+    margin: 8px 0;
+}
+
+.bistro-dashboard-header p {
+    margin-bottom: 0;
+    color: #777777;
+}
+
+.bistro-dashboard-actions {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.bistro-role-pill {
+    display: inline-flex;
+    padding: 6px 14px;
+    color: #FFFFFF;
+    border-radius: 999px;
+    background: var(--secondary);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+.bistro-stat-card {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    height: 100%;
+    padding: 22px;
+    border-radius: 18px;
+    background: #FFFFFF;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, .05);
+}
+
+.bistro-stat-card i {
+    width: 52px;
+    height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    border-radius: 16px;
+    background: var(--primary);
+    font-size: 22px;
+}
+
+.bistro-stat-card span,
+.bistro-stat-card strong {
+    display: block;
+}
+
+.bistro-stat-card span {
+    color: #777777;
+}
+
+.bistro-stat-card strong {
+    color: var(--dark);
+    font-size: 28px;
+}
+
+@media (max-width: 991.98px) {
+    .bistro-dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .bistro-dashboard-sidebar {
+        position: relative;
+        height: auto;
+    }
+
+    .bistro-dashboard-header,
+    .bistro-dashboard-actions {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }

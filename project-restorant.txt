@@ -1,0 +1,67 @@
+Restaurant app conversion idea
+==============================
+
+Goal
+----
+Convert the current organic food template into a restaurant website/app while keeping the existing Bootstrap layout, responsive design, carousel, feature cards, testimonials, blog/news, and contact structure.
+
+New restaurant concept
+----------------------
+The site can become a modern restaurant app for a fresh, healthy, farm-to-table restaurant. The current green/orange food branding can still work well, but the content should shift from selling grocery products to promoting dishes, dining experience, reservations, and online orders.
+
+Page conversion plan
+--------------------
+1. Home page
+   - Replace the organic grocery hero with restaurant messaging such as fresh meals, chef specials, seasonal menu, and table booking.
+   - Change Products and Services buttons to View Menu and Book a Table.
+   - Add sections for signature dishes, today specials, chef story, opening hours, reviews, and reservation call-to-action.
+
+2. About page
+   - Convert it into the restaurant story page.
+   - Explain the chef, food philosophy, local ingredients, atmosphere, and hospitality values.
+
+3. Product page
+   - Convert it into a Menu page.
+   - Product cards become dish cards with dish name, price, ingredients, dietary labels, spice level, and Add to Order button.
+   - Tabs can become Starters, Main Course, Desserts, Drinks, Specials, and Vegan.
+
+4. Feature page
+   - Convert features into restaurant strengths such as Fresh Ingredients, Chef-Crafted Recipes, Fast Delivery, Private Dining, Catering, and Family Friendly.
+
+5. Blog page
+   - Convert to News, Recipes, Events, or Chef Journal.
+   - Use it for seasonal announcements, food stories, special events, and offers.
+
+6. Testimonial page
+   - Keep it as guest reviews.
+   - Add review sources, ratings, and customer dining photos if available.
+
+7. Contact page
+   - Convert into Contact and Reservation page.
+   - Add address, phone, email, opening hours, Google Map, reservation form, party size, date/time picker idea, and special request field.
+
+8. 404 page
+   - Keep it but rewrite the message in restaurant tone, for example "This table is not available" or "This dish is off the menu".
+
+Restaurant-specific features to add later
+-----------------------------------------
+- Online menu browsing.
+- Table reservation form.
+- Online ordering cart.
+- Pickup/delivery option.
+- Daily specials section.
+- Opening hours and holiday hours.
+- Location map.
+- Gallery of food and dining space.
+- Chef/team section.
+- Catering/private event inquiry.
+- Customer reviews with star ratings.
+- Dietary filters such as vegan, gluten-free, spicy, and chef recommended.
+
+Design direction
+----------------
+Use warmer food photography, restaurant interior images, dish closeups, and more appetizing call-to-action text. Keep the Bootstrap structure but adjust content, imagery, icons, and labels so the visitor immediately understands this is a restaurant, not a grocery store.
+
+Important note
+--------------
+This file contains ideas only. No existing code line was changed for this restaurant conversion.

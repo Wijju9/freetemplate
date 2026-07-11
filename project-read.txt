@@ -1,0 +1,49 @@
+Project understanding
+=====================
+
+This repository is a static multi-page website template named "Foody - Organic Food Website Template". It is built as a front-end-only Bootstrap website for an organic food or grocery brand.
+
+What the project contains
+-------------------------
+- HTML pages for the main public website:
+  - index.html: home page with hero carousel, about content, feature cards, product section, customer testimonials, blog preview, and footer.
+  - about.html: company/about page.
+  - product.html: product listing page.
+  - blog.html: blog grid page.
+  - feature.html: feature page.
+  - testimonial.html: testimonial page.
+  - contact.html: contact page.
+  - 404.html: error page.
+- Styling assets:
+  - css/bootstrap.min.css provides Bootstrap styling.
+  - css/style.css provides the custom theme styling, colors, navbar, carousel, cards, footer, and responsive behavior.
+  - scss/ contains Bootstrap source SCSS files.
+- JavaScript assets:
+  - js/main.js controls spinner hiding, WOW animations, fixed navbar behavior, back-to-top button, and testimonial carousel setup.
+  - lib/ contains third-party front-end libraries such as WOW.js, Owl Carousel, easing, waypoints, and animate.css.
+- Image assets:
+  - img/ contains carousel images, product images, blog images, testimonial images, icons, and the about image.
+
+Current app type
+----------------
+This is not a dynamic web application yet. It has no backend, no database, no package manager configuration, no build script, and no real shopping-cart logic. The cart, user, search, product, and contact links are mostly visual/template placeholders.
+
+Visual identity
+---------------
+The current brand is organic, natural, healthy, and grocery-focused. The main colors are green and orange. The typography uses Google Fonts Open Sans and Lora. The layout is clean, bright, and suitable for a food shop, organic product brand, grocery landing page, or farm-to-table business.
+
+Main strengths
+--------------
+- Good Bootstrap-based responsive layout.
+- Multiple ready-made pages already exist.
+- Useful sections are already present: hero, about, features, products, testimonials, blog, contact, footer.
+- The template can be adapted quickly for another food-related business.
+
+Main limitations
+----------------
+- Many text blocks are placeholder/lorem ipsum copy.
+- Some links use empty href values.
+- There is no real product filtering, cart, checkout, booking, login, or search behavior.
+- Contact form behavior is not implemented as a working backend flow.
+- SEO metadata is mostly empty.
+- Accessibility could be improved with better alt text, clearer labels, and meaningful link destinations.

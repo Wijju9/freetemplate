@@ -1,44 +1,24 @@
-Ideas to make this a better app
-===============================
+Ideas to make this restaurant app better
+========================================
 
 Recommended improvements
 ------------------------
-1. Replace all placeholder text with real brand copy.
-   The website should explain what the business sells, why it is trustworthy, where it operates, delivery options, quality promises, and customer benefits.
+1. Add a working reservation flow with date, time, party size, phone number, confirmation states, and email notifications.
 
-2. Improve navigation and links.
-   Empty links should be replaced with real page anchors or real routes. Buttons such as Products, Services, Read More, search, user, and cart should lead somewhere meaningful.
+2. Add online ordering so guests can add dishes to an order, choose pickup or delivery, review totals, and submit the order.
 
-3. Add real product data.
-   Products should have names, prices, categories, images, short descriptions, availability, sale labels, and call-to-action buttons.
+3. Replace inherited template photos with real restaurant dish photos, dining room images, chef photos, and event photos.
 
-4. Add interactive product filtering.
-   The existing product tabs can become useful filters for categories such as vegetables, fruits, fresh dairy, pantry, or featured items.
+4. Add detailed dish data such as ingredients, allergens, dietary labels, spice level, calories, and chef recommendations.
 
-5. Add cart and checkout flow.
-   A better app should let users add items to a cart, edit quantities, view totals, and proceed to checkout or inquiry.
+5. Improve menu filtering with categories like Starters, Mains, Desserts, Drinks, Vegan, Gluten-Free, Spicy, and Seasonal.
 
-6. Add search functionality.
-   The search icon should open a search box that filters products, blog posts, or site content.
+6. Add real opening hours, holiday hours, location details, and map integration.
 
-7. Add stronger contact and lead capture.
-   The contact page should support a real form submission flow, validation, success/error messages, and possibly newsletter signup.
+7. Improve SEO with restaurant-specific page descriptions, local business schema, Open Graph tags, and better alt text.
 
-8. Improve SEO.
-   Each page should have meaningful title, description, keywords, Open Graph tags, image alt text, and structured data where useful.
-
-9. Improve accessibility.
-   Add descriptive alt text, correct aria labels, keyboard-friendly controls, visible focus states, and meaningful button/link text.
-
-10. Optimize performance.
-    Compress images, remove unused CSS/JS, lazy-load below-the-fold images, and consider bundling/minifying assets with a modern build process.
-
-11. Make content easier to maintain.
-    Instead of repeating navbar and footer HTML on every page, use a template system, component framework, static site generator, or backend rendering.
-
-12. Add trust-building sections.
-    Include certifications, delivery areas, freshness guarantee, supplier/farm details, customer reviews, and FAQs.
+8. Add trust sections such as awards, press mentions, guest review ratings, private dining information, and catering details.
 
 Best next version idea
 ----------------------
-The best upgrade would be to convert this static template into a small production-ready storefront. It could keep the current visual style but add real product cards, category filtering, cart state in JavaScript, a working contact/order form, optimized images, and improved SEO. This would make the template feel like an actual usable business website rather than only a design preview.
+The strongest next version would keep the current Bistro visual design and add a real reservation/order layer with structured dish data, booking validation, and real restaurant photography.

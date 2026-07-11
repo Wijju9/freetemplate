@@ -1,49 +1,41 @@
 Project understanding
 =====================
 
-This repository is a static multi-page website template named "Foody - Organic Food Website Template". It is built as a front-end-only Bootstrap website for an organic food or grocery brand.
+This repository is now a static multi-page restaurant website named "Bistro - Farm Fresh Restaurant Website". It is built as a front-end-only Bootstrap site using the same original green/orange UI colors, Open Sans and Lora fonts, layout structure, and image assets.
 
 What the project contains
 -------------------------
-- HTML pages for the main public website:
-  - index.html: home page with hero carousel, about content, feature cards, product section, customer testimonials, blog preview, and footer.
-  - about.html: company/about page.
-  - product.html: product listing page.
-  - blog.html: blog grid page.
-  - feature.html: feature page.
-  - testimonial.html: testimonial page.
-  - contact.html: contact page.
+- HTML pages for the public restaurant website:
+  - index.html: home page with hero carousel, restaurant story, dining features, menu cards, guest reviews, food stories, and footer.
+  - about.html: restaurant story page.
+  - product.html: menu page using the existing product-card layout as dish cards.
+  - blog.html: food stories page.
+  - feature.html: dining features page.
+  - testimonial.html: guest reviews page.
+  - contact.html: reservations/contact page.
   - 404.html: error page.
 - Styling assets:
   - css/bootstrap.min.css provides Bootstrap styling.
-  - css/style.css provides the custom theme styling, colors, navbar, carousel, cards, footer, and responsive behavior.
+  - css/style.css provides custom theme styling, colors, navbar, carousel, cards, footer, and responsive behavior.
   - scss/ contains Bootstrap source SCSS files.
 - JavaScript assets:
   - js/main.js controls spinner hiding, WOW animations, fixed navbar behavior, back-to-top button, and testimonial carousel setup.
   - lib/ contains third-party front-end libraries such as WOW.js, Owl Carousel, easing, waypoints, and animate.css.
 - Image assets:
-  - img/ contains carousel images, product images, blog images, testimonial images, icons, and the about image.
+  - img/ contains the reused carousel, menu, blog, testimonial, icon, and about images.
 
 Current app type
 ----------------
-This is not a dynamic web application yet. It has no backend, no database, no package manager configuration, no build script, and no real shopping-cart logic. The cart, user, search, product, and contact links are mostly visual/template placeholders.
-
-Visual identity
----------------
-The current brand is organic, natural, healthy, and grocery-focused. The main colors are green and orange. The typography uses Google Fonts Open Sans and Lora. The layout is clean, bright, and suitable for a food shop, organic product brand, grocery landing page, or farm-to-table business.
+This is still a static restaurant website, not a full dynamic app. It has no backend, database, reservation-processing service, online ordering checkout, or real login/search functionality yet.
 
 Main strengths
 --------------
-- Good Bootstrap-based responsive layout.
-- Multiple ready-made pages already exist.
-- Useful sections are already present: hero, about, features, products, testimonials, blog, contact, footer.
-- The template can be adapted quickly for another food-related business.
+- Restaurant branding is now visible across the core pages.
+- The same UI colors, fonts, images, and Bootstrap layout were preserved.
+- Menu, reservations, dining features, food stories, and guest reviews are now clearer for restaurant visitors.
 
 Main limitations
 ----------------
-- Many text blocks are placeholder/lorem ipsum copy.
-- Some links use empty href values.
-- There is no real product filtering, cart, checkout, booking, login, or search behavior.
-- Contact form behavior is not implemented as a working backend flow.
-- SEO metadata is mostly empty.
-- Accessibility could be improved with better alt text, clearer labels, and meaningful link destinations.
+- Reservation form submission is visual only.
+- Online ordering and cart behavior are not implemented.
+- Some image assets are still inherited from the original template and should eventually be replaced with real restaurant photography.

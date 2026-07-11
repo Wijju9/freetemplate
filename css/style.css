@@ -382,3 +382,18 @@
 .footer .copyright a:hover {
     color: var(--primary);
 }
+/*** Shop Interactions ***/
+.foody-cart {
+    width: 360px;
+}
+
+.cart-item img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.extra-product-set {
+    animation: fadeInUp .5s ease both;
+}

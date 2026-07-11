@@ -637,3 +637,7 @@ body.bistro-sidebar-collapsed .bistro-dashboard-sidebar {
     border-radius: 10px;
     background: var(--light);
 }
+
+.bistro-order-card {
+    width: min(100%, 720px);
+}

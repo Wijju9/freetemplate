@@ -201,18 +201,35 @@
         $("#bistroDashboardUser").text(activeBistroUser.name);
         $("#bistroDashboardStats").html(renderBistroStats(state));
 
-        if (access.full) {
-            content.push(renderCustomersSection(state));
-            content.push(renderEmployeesSection(state));
-            content.push(renderMenuSection(state));
+        var moduleName = $("#bistroDashboardPage").data("bistro-module") || "overview";
+        if (moduleName === "overview") {
+            if (access.full) {
+                content.push(renderCustomersSection(state));
+                content.push(renderEmployeesSection(state));
+                content.push(renderMenuSection(state));
+            }
+            if (access.canOrder) content.push(renderOrderSection(state));
+            if (access.canCook) content.push(renderCookSection(state));
+            if (access.canCashier) content.push(renderCashierSection(state));
+            if (access.isCustomer) content.push(renderCustomerHistorySection(state));
+        } else {
+            content.push(renderBistroModule(moduleName, state, access));
         }
-        if (access.canOrder) content.push(renderOrderSection(state));
-        if (access.canCook) content.push(renderCookSection(state));
-        if (access.canCashier) content.push(renderCashierSection(state));
-        if (access.isCustomer) content.push(renderCustomerHistorySection(state));
 
         $("#bistroDashboardContent").html(content.join(""));
         if (!$("#bistroDashboardPage").length) window.location.href = "dashboard.html";
+    }
+
+    function renderBistroModule(moduleName, state, access) {
+        var noAccess = '<section class="bistro-panel"><h4>No Access</h4><p class="mb-0">Your current role cannot open this restaurant operation page.</p></section>';
+        if (moduleName === "customers") return access.full || access.isCustomer ? renderCustomerHistorySection(state) : noAccess;
+        if (moduleName === "customer-management") return access.full ? renderCustomersSection(state) : noAccess;
+        if (moduleName === "employees") return access.full ? renderEmployeesSection(state) : noAccess;
+        if (moduleName === "orders") return access.canOrder ? renderOrderSection(state) : noAccess;
+        if (moduleName === "cook") return access.canCook ? renderCookSection(state) : noAccess;
+        if (moduleName === "products") return access.full ? renderProductSection(state) : noAccess;
+        if (moduleName === "categories") return access.full ? renderCategorySection(state) : noAccess;
+        return noAccess;
     }
 
     function renderBistroStats(state) {
@@ -239,18 +256,26 @@
         var rows = state.employees.map(function (employee) {
             return '<tr><td>' + employee.id + '</td><td>' + escapeBistroHtml(employee.name) + '</td><td>' + escapeBistroHtml(employee.role) + '</td><td>' + escapeBistroHtml(employee.phone) + '</td><td><button class="btn btn-sm btn-outline-danger" data-bistro-delete="employee" data-id="' + employee.id + '">Delete</button></td></tr>';
         });
-        return '<section class="bistro-panel"><h4>Add Employee</h4><form class="row g-2 mb-3" data-bistro-form="employee"><div class="col-md-4"><input class="form-control" name="name" placeholder="Employee name" required></div><div class="col-md-3"><select class="form-select" name="role"><option>employee</option><option>cook</option><option>cashier</option><option>admin</option></select></div><div class="col-md-3"><input class="form-control" name="phone" placeholder="Phone" required></div><div class="col-md-2"><button class="btn btn-primary w-100" type="submit">Add</button></div></form>' + renderBistroTable(["ID", "Name", "Role", "Phone", "Action"], rows) + '</section>';
+        return '<section class="bistro-panel"><h4>Add Employee</h4><form class="row g-2 mb-3" data-bistro-form="employee"><div class="col-md-4"><input class="form-control" name="name" placeholder="Employee name" required></div><div class="col-md-3"><select class="form-select" name="role"><option>cook</option><option>food serve</option><option>food order place person</option><option>cashier</option><option>admin</option></select></div><div class="col-md-3"><input class="form-control" name="phone" placeholder="Phone" required></div><div class="col-md-2"><button class="btn btn-primary w-100" type="submit">Add</button></div></form>' + renderBistroTable(["ID", "Name", "Role", "Phone", "Action"], rows) + '</section>';
     }
 
     function renderMenuSection(state) {
+        return renderCategorySection(state) + renderProductSection(state);
+    }
+
+    function renderCategorySection(state) {
         var categoryRows = state.categories.map(function (category, index) {
             return '<tr><td>' + (index + 1) + '</td><td>' + escapeBistroHtml(category) + '</td><td>Veg menu</td><td><button class="btn btn-sm btn-outline-danger" data-bistro-delete="category" data-id="' + index + '">Delete</button></td></tr>';
         });
+        return '<section class="bistro-panel"><h4>Product Category</h4><form class="row g-2 mb-3" data-bistro-form="category"><div class="col-md-8"><input class="form-control" name="name" placeholder="Category name" required></div><div class="col-md-4"><button class="btn btn-primary w-100" type="submit">Add Category</button></div></form>' + renderBistroTable(["#", "Category", "Type", "Action"], categoryRows) + '</section>';
+    }
+
+    function renderProductSection(state) {
         var productRows = state.products.map(function (product) {
             return '<tr><td>' + product.id + '</td><td>' + escapeBistroHtml(product.name) + '</td><td>' + escapeBistroHtml(product.category) + '</td><td>$' + Number(product.price).toFixed(2) + '</td><td>Veg</td><td><button class="btn btn-sm btn-outline-danger" data-bistro-delete="product" data-id="' + product.id + '">Delete</button></td></tr>';
         });
         var categoryOptions = state.categories.map(function (category) { return '<option>' + escapeBistroHtml(category) + '</option>'; }).join("");
-        return '<section class="bistro-panel"><h4>Veg Menu Categories</h4><form class="row g-2 mb-3" data-bistro-form="category"><div class="col-md-8"><input class="form-control" name="name" placeholder="Category name" required></div><div class="col-md-4"><button class="btn btn-primary w-100" type="submit">Add Category</button></div></form>' + renderBistroTable(["#", "Category", "Type", "Action"], categoryRows) + '<h4 class="mt-4">Veg Menu Products</h4><form class="row g-2 mb-3" data-bistro-form="product"><div class="col-md-4"><input class="form-control" name="name" placeholder="Dish name" required></div><div class="col-md-3"><select class="form-select" name="category">' + categoryOptions + '</select></div><div class="col-md-3"><input class="form-control" name="price" type="number" min="1" placeholder="Price" required></div><div class="col-md-2"><button class="btn btn-primary w-100" type="submit">Add</button></div></form>' + renderBistroTable(["ID", "Dish", "Category", "Price", "Menu", "Action"], productRows) + '</section>';
+        return '<section class="bistro-panel"><h4>Product</h4><form class="row g-2 mb-3" data-bistro-form="product"><div class="col-md-4"><input class="form-control" name="name" placeholder="Dish name" required></div><div class="col-md-3"><select class="form-select" name="category">' + categoryOptions + '</select></div><div class="col-md-3"><input class="form-control" name="price" type="number" min="1" placeholder="Price" required></div><div class="col-md-2"><button class="btn btn-primary w-100" type="submit">Add</button></div></form>' + renderBistroTable(["ID", "Dish", "Category", "Price", "Menu", "Action"], productRows) + '</section>';
     }
 
     function renderOrderSection(state) {
@@ -362,6 +387,11 @@
         });
         saveBistroState(state);
         renderBistroDashboard();
+    });
+
+
+    $(document).on("click", "#bistroSidebarToggle", function () {
+        $("body").toggleClass("bistro-sidebar-collapsed");
     });
 
 

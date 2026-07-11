@@ -591,3 +591,30 @@
         align-items: flex-start;
     }
 }
+
+.bistro-operation-toggle {
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    border: 0;
+    border-radius: 14px;
+    color: #FFFFFF;
+    background: var(--primary);
+}
+
+body.bistro-sidebar-collapsed .bistro-dashboard-layout {
+    grid-template-columns: 0 minmax(0, 1fr);
+}
+
+body.bistro-sidebar-collapsed .bistro-dashboard-sidebar {
+    width: 0;
+    min-width: 0;
+    padding-left: 0;
+    padding-right: 0;
+    overflow: hidden;
+}
+
+.bistro-dashboard-sidebar,
+.bistro-dashboard-layout {
+    transition: .3s ease;
+}

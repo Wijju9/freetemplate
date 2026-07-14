@@ -1,0 +1,24 @@
+Ideas to make this restaurant app better
+========================================
+
+Recommended improvements
+------------------------
+1. Add a working reservation flow with date, time, party size, phone number, confirmation states, and email notifications.
+
+2. Add online ordering so guests can add dishes to an order, choose pickup or delivery, review totals, and submit the order.
+
+3. Replace inherited template photos with real restaurant dish photos, dining room images, chef photos, and event photos.
+
+4. Add detailed dish data such as ingredients, allergens, dietary labels, spice level, calories, and chef recommendations.
+
+5. Improve menu filtering with categories like Starters, Mains, Desserts, Drinks, Vegan, Gluten-Free, Spicy, and Seasonal.
+
+6. Add real opening hours, holiday hours, location details, and map integration.
+
+7. Improve SEO with restaurant-specific page descriptions, local business schema, Open Graph tags, and better alt text.
+
+8. Add trust sections such as awards, press mentions, guest review ratings, private dining information, and catering details.
+
+Best next version idea
+----------------------
+The strongest next version would keep the current Bistro visual design and add a real reservation/order layer with structured dish data, booking validation, and real restaurant photography.

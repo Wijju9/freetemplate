@@ -1,0 +1,41 @@
+Project understanding
+=====================
+
+This repository is now a static multi-page restaurant website named "Bistro - Farm Fresh Restaurant Website". It is built as a front-end-only Bootstrap site using the same original green/orange UI colors, Open Sans and Lora fonts, layout structure, and image assets.
+
+What the project contains
+-------------------------
+- HTML pages for the public restaurant website:
+  - index.html: home page with hero carousel, restaurant story, dining features, menu cards, guest reviews, food stories, and footer.
+  - about.html: restaurant story page.
+  - product.html: menu page using the existing product-card layout as dish cards.
+  - blog.html: food stories page.
+  - feature.html: dining features page.
+  - testimonial.html: guest reviews page.
+  - contact.html: reservations/contact page.
+  - 404.html: error page.
+- Styling assets:
+  - css/bootstrap.min.css provides Bootstrap styling.
+  - css/style.css provides custom theme styling, colors, navbar, carousel, cards, footer, and responsive behavior.
+  - scss/ contains Bootstrap source SCSS files.
+- JavaScript assets:
+  - js/main.js controls spinner hiding, WOW animations, fixed navbar behavior, back-to-top button, and testimonial carousel setup.
+  - lib/ contains third-party front-end libraries such as WOW.js, Owl Carousel, easing, waypoints, and animate.css.
+- Image assets:
+  - img/ contains the reused carousel, menu, blog, testimonial, icon, and about images.
+
+Current app type
+----------------
+This is still a static restaurant website, not a full dynamic app. It has no backend, database, reservation-processing service, online ordering checkout, or real login/search functionality yet.
+
+Main strengths
+--------------
+- Restaurant branding is now visible across the core pages.
+- The same UI colors, fonts, images, and Bootstrap layout were preserved.
+- Menu, reservations, dining features, food stories, and guest reviews are now clearer for restaurant visitors.
+
+Main limitations
+----------------
+- Reservation form submission is visual only.
+- Online ordering and cart behavior are not implemented.
+- Some image assets are still inherited from the original template and should eventually be replaced with real restaurant photography.

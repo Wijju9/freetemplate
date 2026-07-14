@@ -1,0 +1,28 @@
+Restaurant app conversion summary
+=================================
+
+This project has now been converted from an organic grocery template into a restaurant-style website while keeping the same UI system, colors, fonts, Bootstrap structure, and existing image assets.
+
+What changed
+------------
+- The brand changed from Foody to Bistro.
+- The navigation changed from products/contact language to restaurant language such as Our Story, Menu, Dining Features, Guest Reviews, and Reservations.
+- The home hero now promotes seasonal dining and chef-crafted plates.
+- The about sections now focus on fresh ingredients, warm hospitality, chef specials, reservations, takeaway, and private dining.
+- The product sections now work as menu sections with Starters, Mains, and Desserts tabs.
+- Repeated grocery product names were replaced with restaurant dish names.
+- The contact page is now positioned as a reservation page with reservation-focused copy and form labels.
+
+Design approach
+---------------
+The conversion keeps the same green/orange color palette, Open Sans and Lora fonts, Bootstrap spacing, carousel layout, card layout, product/menu cards, testimonial carousel, and existing image files. This means the app feels like a new restaurant project without changing the underlying visual system.
+
+Future improvement ideas
+------------------------
+- Add real restaurant photos for dishes, dining room, chef, and events.
+- Add a working reservation backend or booking widget.
+- Add online ordering with cart and pickup/delivery options.
+- Add menu filters for vegan, gluten-free, spicy, chef special, and seasonal dishes.
+- Add opening hours and holiday hours.
+- Add Google Maps location details for the restaurant address.
+- Add real customer reviews and star ratings.
